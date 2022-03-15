@@ -36,7 +36,7 @@ called `StartButton` that extends `TextEntity`
 
 ![Edit](images/edit.png) Create a new Class `StartButton` that
 extends `TextEntity` and place it in the package
-`com.github.hanyaeger.tutorial.entities.buttons`. Use the following constructor:
+`com.github.hanyaeger.tutorial.entities.buttons2`. Use the following constructor:
 
 ```java
 public StartButton(Coordinate2D initialLocation){
