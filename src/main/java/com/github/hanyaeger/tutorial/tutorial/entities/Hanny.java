@@ -9,6 +9,8 @@ import com.github.hanyaeger.api.entities.SceneBorderCrossingWatcher;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
+import com.github.hanyaeger.tutorial.Gameoverscene;
+import com.github.hanyaeger.tutorial.Waterworld;
 import com.github.hanyaeger.tutorial.tutorial.entities.text.HealthText;
 import javafx.scene.input.KeyCode;
 
@@ -18,14 +20,17 @@ import java.util.Set;
 public class Hanny extends DynamicSpriteEntity implements KeyListener, SceneBorderCrossingWatcher, Newtonian, Collided {
 
     private HealthText healthText;
+    private Gameoverscene gameoverscene;
+    private Waterworld waterworld;
     private int health = 10;
 
-    public Hanny(Coordinate2D location, HealthText healthText) {
+    public Hanny(Coordinate2D location, HealthText healthText, Waterworld waterworld) {
         super("sprites/hanny.png", location, new Size(20, 40), 1, 2);
 
         this.healthText = healthText;
         healthText.setHealthText(health);
 
+        this.waterworld = waterworld;
         setGravityConstant(0.005);
         setFrictionConstant(0.04);
     }
@@ -87,6 +92,11 @@ public class Hanny extends DynamicSpriteEntity implements KeyListener, SceneBord
         );
         health--;
         healthText.setHealthText(health);
+
+        if (health <= 8){
+            waterworld.setActiveScene(2);
+        }
+
     }
 
 }
