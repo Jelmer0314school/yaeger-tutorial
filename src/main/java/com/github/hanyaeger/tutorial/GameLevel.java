@@ -1,17 +1,20 @@
 package com.github.hanyaeger.tutorial;
 
 import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.EntitySpawnerContainer;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 //import com.github.hanyaeger.tutorial.entities.Hanny;
-//import com.github.hanyaeger.tutorial.entities.Swordfish;
-import com.github.hanyaeger.tutorial.Gameoverscene;
-import com.github.hanyaeger.tutorial.Waterworld;
+import com.github.hanyaeger.api.scenes.TileMapContainer;
 import com.github.hanyaeger.tutorial.tutorial.entities.Hanny;
-import com.github.hanyaeger.tutorial.tutorial.entities.Swordfish;
+import com.github.hanyaeger.tutorial.tutorial.entities.Sharky;
+import com.github.hanyaeger.tutorial.tutorial.entities.map.CoralTileMap;
+import com.github.hanyaeger.tutorial.tutorial.entities.text.BubblesPoppedText;
 import com.github.hanyaeger.tutorial.tutorial.entities.text.HealthText;
+import com.github.hanyaeger.tutorial.tutorial.entities.swordfish.SwordFish;
+import com.github.hanyaeger.tutorial.tutorial.spawners.BubbleSpawner;
 import javafx.scene.Cursor;
 
-public class GameLevel extends DynamicScene {
+public class GameLevel extends DynamicScene implements EntitySpawnerContainer, TileMapContainer {
     @Override
     public void setupScene() {
         setBackgroundAudio("audio/waterworld.mp3");
@@ -26,13 +29,18 @@ public class GameLevel extends DynamicScene {
 
     @Override
     public void setupEntities() {
-        var swordFish = new Swordfish(new Coordinate2D(getWidth() / 2, getHeight() / 2));
-        var healthboard = new HealthText(new Coordinate2D(getWidth() / 2, 20));
-//        var gameover = new Gameoverscene();
-        var hanny =  new Hanny(new Coordinate2D(getWidth() / 2, getHeight() / 2), healthboard, waterworld);
+        var swordFish = new SwordFish(new Coordinate2D(getWidth(), getHeight() / 2));
+        var healthboard = new HealthText(new Coordinate2D(0,0));
+
+        var bubblesPoppedText = new BubblesPoppedText(new Coordinate2D(0, 30));
+        addEntity(bubblesPoppedText);
+
+        var hanny =  new Hanny(new Coordinate2D(getWidth() / 2, getHeight() / 2), healthboard,bubblesPoppedText, waterworld);
+        var sharky = new Sharky(new Coordinate2D(0,100));
         addEntity(swordFish);
         addEntity(hanny);
         addEntity(healthboard);
+        addEntity(sharky);
     }
 
     @Override
@@ -53,5 +61,14 @@ public class GameLevel extends DynamicScene {
     @Override
     public void beforeInitialize() {
         super.beforeInitialize();
+    }
+
+    @Override
+    public void setupEntitySpawners() {
+        addEntitySpawner(new BubbleSpawner(getWidth(), getHeight()));
+    }
+    @Override
+    public void setupTileMaps() {
+        addTileMap(new CoralTileMap());
     }
 }
