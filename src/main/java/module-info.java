@@ -1,9 +1,12 @@
 module waterworld {
     requires hanyaeger;
 
-    exports com.github.hanyaeger.tutorial;
+    exports com.github.hanyaeger.game;
 
     opens audio;
     opens backgrounds;
     opens sprites;
+    exports com.github.hanyaeger.game.game.entities.map;
+//    exports com.github.hanyaeger;
+//    opens TitleScene;
 }

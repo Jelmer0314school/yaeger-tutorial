@@ -5,9 +5,9 @@ typically a Scene that contains animated Entities, we are going to extend a
 `DynamicScene`.
 
 ![Edit](images/edit.png) Add a scene called `GameLevel`, which extends
-`DynamicScene`, to the `com.github.hanyaeger.tutorial.scenes`
+`DynamicScene`, to the `com.github.hanyaeger.game.scenes`
 package. Use the method `setupScene()` to set the background to the
-asset `background2.jpg` and the audio to `waterworld.mp3`.
+asset `background2.jpg` and the audio to `timmyTheJetpack.mp3`.
 
 At this moment the level has not yet been added to the game. You have only
 created a new class, that needs to be instantiated and added to
@@ -36,7 +36,7 @@ called `StartButton` that extends `TextEntity`
 
 ![Edit](images/edit.png) Create a new Class `StartButton` that
 extends `TextEntity` and place it in the package
-`com.github.hanyaeger.tutorial.entities.buttons`. Use the following constructor:
+`com.github.hanyaeger.game.entities.buttons`. Use the following constructor:
 
 ```java
 public StartButton(Coordinate2D initialLocation){
@@ -72,10 +72,10 @@ instance of `Waterworld` to the `StartButton` and then call
 ![Edit](images/edit.png) Change the constructor of `TitleScene` to
 
 ```java
-private Waterworld waterworld;
+private Waterworld timmyTheJetpack;
 
-public TitleScene(Waterworld waterworld){
-    this.waterworld = waterworld;
+public TitleScene(Waterworld timmyTheJetpack){
+    this.timmyTheJetpack = timmyTheJetpack;
 }
 ```
 
@@ -100,7 +100,7 @@ handler:
 ```java
 @Override
 public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2D){
-    waterworld.setActiveScene(1);
+    timmyTheJetpack.setActiveScene(1);
 }
 ```
 

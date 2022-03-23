@@ -68,7 +68,7 @@ of `AirBubble` and `PoisonBubble`.
 
 ![Edit](images/edit.png) Create a class called `BubbleSpawner` that
 extends `EntitySpawner` in the package
-`com.github.hanyaeger.tutorial.spawners`. Notice that the constructor
+`com.github.hanyaeger.game.spawners`. Notice that the constructor
 of `EntitySpawner` accepts a parameter called `intervalInMs`. This parameter
 will define the interval at which the method `spawnEntities()` is called. From
 this method you can call `spawn(YaegerEntity)`.
@@ -223,7 +223,7 @@ public void onCollision(Collider collidingObject){
         healthText.setText(--health);
 
         if (health == 0){
-            this.waterworld.setActiveScene(2);
+            this.timmyTheJetpack.setActiveScene(2);
         } else {
             setAnchorLocation(new Coordinate2D(
                 new Random().nextInt((int)(getSceneWidth() - getWidth())),
